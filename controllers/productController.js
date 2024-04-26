@@ -51,7 +51,7 @@ const getProductById = asyncErrorHandler(async (req, res, next) => {
   const productId = req.params.id;
 
   try {
-    const product = await productModel.findById(productId);
+    const product = await productModel.findById(productId).populate("category").populate("subcategory");;
 
     if (!product) {
       return next(new ErrorHandler(404, "Product not found"));
