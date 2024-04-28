@@ -22,6 +22,7 @@ app.use("/api", require("./routes/serviceRouter"));
 app.use("/api", require("./routes/teamRouter"));
 app.use("/api", require("./routes/blog"));
 app.use("/api", require("./routes/career"));
+app.use("/api", require('./routes/direactor'));
 app.use(express.static("uploads"));
 app.get('/',(req,res)=>{
   res.send('hey manish')
