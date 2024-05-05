@@ -36,9 +36,21 @@ categoryRouter.route("/category/product/get").get(getProductcat);
 
 categoryRouter.route("/category/product/:id").delete(deleteCategoryById);
 
-categoryRouter.route("/category/service/create").post(createServicecat);
+// categoryRouter.route("/category/service/create").post(createServicecat);
 categoryRouter.route("/category/service/get").get(getServicecat);
-
+categoryRouter.post("/category/service/create",async (req, res) => {
+  try {
+    // const result = await cloudinary.uploader.upload(req.file.path);
+    let user = new TeamcatModel({
+      name: req.body.name
+    });
+    // Save user
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
 // categoryRouter.route("/category/team/create").post(createTeamcat);
 categoryRouter.route("/category/team/get").get(getTeamcat);
 categoryRouter.post("/category/team/create",async (req, res) => {

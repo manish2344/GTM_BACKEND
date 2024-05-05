@@ -4,14 +4,19 @@ const serviceSchema = new mongoose.Schema({
   name:String,
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
+    ref: "Service Category",
   },
   subcategory: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Subcategory",
-  },
+    ref: "Service Category",
+  }, 
   description: String,
-  image: String,
+  avatar: {
+    type: String,
+  },
+  cloudinary_id: {
+    type: String,
+  }, 
 });
 
 const serviceModel = mongoose.model("Services", serviceSchema);

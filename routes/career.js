@@ -1,7 +1,6 @@
 // const express = require("express");
 const router = require("express").Router()
 const {
-  createJob,
   getJobs,
   getJobById,
   deleteJob,
@@ -13,42 +12,39 @@ const Job = require("../models/Career.js");
 const cloudinary = require("./cloudinary");
 const upload = require("./multer");
 
-
-
-
 router.route("/career/create").post( upload.single("image"),
 
 async (req, res) => {
     try {
       const result = await cloudinary.uploader.upload(req.file.path);
-      let career = new Job({
+      let product = new Job({
         title: req.body.title,
-        position: req.body.position,
-        // category: req.body.category,
-        // subcategory: req.body.subcategory,
-        experience:req.body.experience,
+        description:req.body.description,
+        requirements:req.body.requirements,
+        responsibilities: req.body.responsibilities,
+        department:req.body.department,
         avatar: result.secure_url,
         cloudinary_id: result.public_id,
-        vacancies: req.body.vacancies,
-        joblocation:req.body.joblocation,
-        joining: req.body.joining,
-        overview:req.body.overview,
-        responsibilities: req.body.responsibilities,
-        requirements:req.body.requirements,
-        department:req.body.department,
+
+        experience:req.body.experience,
+        vacancies:req.body.vacancies,
+        joblocation: req.body.joblocation,
+
+        joining:req.body.joining,
+        position:req.body.position,
+        overview:req.body.overview
       });
       // Save user
-      await career.save();
+      await product.save();
       res.status(201).json({
         success: true,
-        message: " created successfully",
-        data: career,
+        message: "Product created successfully",
+        data: product,
       });
     } catch (err) {
       console.log(err);
     }
   });
-
 router.route("/getalljobs").get(getJobs);
 router.route("/getjobbyid/:jobId").get(getJobById);
 router.route("/deletejob/:jobId").delete(deleteJob);

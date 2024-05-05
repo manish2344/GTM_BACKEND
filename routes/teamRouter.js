@@ -16,6 +16,7 @@ async (req, res) => {
       let user = new teamModel({
         name: req.body.name,
         description: req.body.description,
+        // position:req.body.position,
         category: req.body.category,
         subcategory: req.body.subcategory,
         socialHandle: req.body.socialHandle,

@@ -11,7 +11,7 @@ exports.createService = asyncErrorHandler(async (req, res) => {
   const newService = await serviceModel.create({
     name,
     category,
-    subcategory,
+    subcategory, 
     description,
     image: serviceImage.filename,
   });
@@ -25,9 +25,9 @@ exports.createService = asyncErrorHandler(async (req, res) => {
 
 // Get all services
 exports.getAllServices = asyncErrorHandler(async (req, res) => {
-  const services = await serviceModel.find()
-    .populate("category")
-    .populate("subcategory");
+  const services = await serviceModel.find().populate("category")
+  // .populate("category");
+    // .populate("subcategory");
     res.status(201).json({
       success: true,
       message: "services fetch successfully",

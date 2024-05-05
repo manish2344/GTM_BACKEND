@@ -5,6 +5,10 @@ const teamSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  position: {
+    type: String,
+    // required: true,
+  },
   avatar: {
     type: String,
   },
@@ -20,7 +24,18 @@ const teamSchema = new mongoose.Schema({
     ref: "Team Subcategory",
   },
   description: String,
-  socialHandle: String,
+  // socialHandle: String,
+  socialHandlers: {
+    facebook: String,
+    email: String,
+    linkedin: String
+  }
+  // socialHandle: [
+  //   {
+  //     type: String,
+  //     required: true,
+  //   },
+  // ],
 });
 
 const teamModel =   mongoose.model('Team', teamSchema);
